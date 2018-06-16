@@ -1,11 +1,11 @@
 import hashlib
 import json
-
-from textwrap import dedent 
+from textwrap import dedent
 from time import time
 from uuid import uuid4
 
 from flask import Flask, jsonify, request
+
 
 class Blockchain(object):
     def __init__(self):
@@ -98,7 +98,7 @@ class Blockchain(object):
     @property
     def last_block(self):
         # Returns the last Block in the chain
-       return self.chain[-1]
+        return self.chain[-1]
 
     def proof_of_work(self, last_proof):
         """
@@ -112,7 +112,7 @@ class Blockchain(object):
         proof = 0
         while self.valid_proof(last_proof, proof) is False:
             proof += 1
-        
+
         return proof
 
     @staticmethod
@@ -127,5 +127,3 @@ class Blockchain(object):
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
-
-
